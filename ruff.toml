@@ -1,0 +1,20 @@
+# Ruff configuration for AeroHybrid
+line-length = 120
+target-version = "py310"
+
+[lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+]
+ignore = [
+    "E501", # line length violations (handled by formatter)
+    "B008", # function call in default argument (FastAPI Depends)
+]
+
+[lint.isort]
+known-first-party = ["backend"]

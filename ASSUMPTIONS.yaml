@@ -1,0 +1,802 @@
+# AeroHybrid: Parameter Registry & Sourcing Ledger
+# Ground Rule 2: Every constant must come from a cited source or be logged in ASSUMPTIONS.yaml.
+# Format: value, unit, source_or_assumption, confidence (HIGH, MEDIUM, LOW), owner_file, notes
+
+constants:
+  # ==============================================================================
+  # Atmospheric Thermodynamics (atmosphere.py)
+  # ==============================================================================
+  T0_ISA:
+    value: 288.15
+    unit: "K"
+    source_or_assumption: "ICAO Doc 7488/3 (Manual of the ICAO Standard Atmosphere)"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/atmosphere.py"
+    notes: "Sea level standard temperature (15.0 °C)"
+
+  P0_ISA:
+    value: 101325.0
+    unit: "Pa"
+    source_or_assumption: "ICAO Doc 7488/3"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/atmosphere.py"
+    notes: "Sea level standard atmospheric pressure"
+
+  RHO0_ISA:
+    value: 1.225
+    unit: "kg/m^3"
+    source_or_assumption: "ICAO Doc 7488/3"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/atmosphere.py"
+    notes: "Sea level standard atmospheric density"
+
+  G0:
+    value: 9.80665
+    unit: "m/s^2"
+    source_or_assumption: "ISO 80000-3 / WGS 84 standard gravitational acceleration"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/atmosphere.py"
+    notes: "Standard acceleration of gravity"
+
+  R_AIR:
+    value: 287.05287
+    unit: "J/(kg*K)"
+    source_or_assumption: "ICAO Doc 7488/3"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/atmosphere.py"
+    notes: "Specific gas constant for dry air"
+
+  LAPSE_RATE:
+    value: 0.0065
+    unit: "K/m"
+    source_or_assumption: "ICAO Doc 7488/3"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/atmosphere.py"
+    notes: "Standard tropospheric temperature lapse rate (1.98 °C / 1000 ft)"
+
+  GAMMA_AIR:
+    value: 1.4
+    unit: "dimensionless"
+    source_or_assumption: "Standard thermodynamic value for diatomic ideal gas"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/atmosphere.py"
+    notes: "Ratio of specific heats (Cp/Cv)"
+
+  # ==============================================================================
+  # Aircraft Baseline (aircraft_specs.py - Reference: ATR 72-600)
+  # ==============================================================================
+  mtow_kg:
+    value: 23000.0
+    unit: "kg"
+    source_or_assumption: "ATR 72-600 Manufacturer Factsheet & EASA TCDS A.084"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "Optional structural MTOW limit. Basic MTOW is 22,800 kg."
+
+  mlw_kg:
+    value: 22350.0
+    unit: "kg"
+    source_or_assumption: "ATR 72-600 Manufacturer Factsheet & EASA TCDS A.084"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "Maximum Landing Weight structural limit"
+
+  mzfw_kg:
+    value: 21000.0
+    unit: "kg"
+    source_or_assumption: "ATR 72-600 Manufacturer Factsheet & EASA TCDS A.084"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "Optional MZFW limit. Basic MZFW is 20,800 kg."
+
+  oew_kg:
+    value: 13500.0
+    unit: "kg"
+    source_or_assumption: "Typical airline operational configuration (~13,450 to 13,500 kg); tech spec minimum is 13,010 kg"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "Operational Empty Weight includes crew, standard pantry, and emergency equipment"
+
+  max_payload_kg:
+    value: 7500.0
+    unit: "kg"
+    source_or_assumption: "ATR 72-600 Manufacturer Factsheet"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "Max structural payload capacity"
+
+  max_fuel_capacity_kg:
+    value: 5000.0
+    unit: "kg"
+    source_or_assumption: "ATR 72-600 Manufacturer Factsheet (6,250 L at 0.80 kg/L)"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "Standard twin-wing tank kerosene capacity"
+
+  wing_area_m2:
+    value: 61.0
+    unit: "m^2"
+    source_or_assumption: "ATR 72-600 Manufacturer Factsheet"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "Trapezoidal reference wing area"
+
+  wingspan_m:
+    value: 27.05
+    unit: "m"
+    source_or_assumption: "ATR 72-600 Manufacturer Factsheet"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "Tip-to-tip wing span"
+
+  aspect_ratio:
+    value: 12.0
+    unit: "dimensionless"
+    source_or_assumption: "Derived: wingspan^2 / wing_area = 27.05^2 / 61.0 = 12.00"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "Wing geometric aspect ratio"
+
+  oswald_efficiency:
+    value: 0.84
+    unit: "dimensionless"
+    source_or_assumption: "Raymer (Aircraft Design: A Conceptual Approach) Table 12.4 estimate for high-wing commuter"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "Span efficiency factor in clean cruise"
+
+  cd0_clean:
+    value: 0.0242
+    unit: "dimensionless"
+    source_or_assumption: "Calibrated to match ATR 72-600 FCOM cruise fuel flow (~762 kg/h at FL200)"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "Parasitic zero-lift drag coefficient"
+
+  cd0_takeoff_flaps:
+    value: 0.0385
+    unit: "dimensionless"
+    source_or_assumption: "Assumption"
+    confidence: "LOW"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "Parasitic drag with Flaps 15 + landing gear deployed"
+
+  cd0_landing_flaps:
+    value: 0.0550
+    unit: "dimensionless"
+    source_or_assumption: "Assumption"
+    confidence: "LOW"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "Parasitic drag with Flaps 30 + landing gear deployed"
+
+  num_engines:
+    value: 2
+    unit: "dimensionless"
+    source_or_assumption: "ATR 72-600 configuration"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "Twin turboprop"
+
+  engine_model:
+    value: "PW127M"
+    unit: "text"
+    source_or_assumption: "ATR 72-600 Manufacturer Factsheet / EASA TCDS A.084"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "ATR 72-600 is equipped with PW127M (not PW127F)"
+
+  takeoff_power_shp_per_engine:
+    value: 2475.0
+    unit: "shp"
+    source_or_assumption: "Pratt & Whitney Canada PW127M Engine Specification / ATR Factsheet"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "Normal takeoff rating. 2,750 SHP is Automatic Reserve Power (APR / 10-minute OEI reserve)."
+
+  takeoff_power_kw_per_engine:
+    value: 1846.0
+    unit: "kW"
+    source_or_assumption: "Derived: 2,475 shp * 0.74569987 = 1845.6 kW"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "Normal takeoff mechanical power per engine"
+
+  takeoff_apr_power_shp_per_engine:
+    value: 2750.0
+    unit: "shp"
+    source_or_assumption: "P&WC PW127M Specification"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "One-Engine-Inoperative (OEI) Automatic Power Reserve"
+
+  propeller_diameter_m:
+    value: 3.93
+    unit: "m"
+    source_or_assumption: "Hamilton Sundstrand 568F 6-blade propeller spec / ATR Factsheet"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "Propeller disc diameter"
+
+  propeller_efficiency_takeoff:
+    value: 0.72
+    unit: "dimensionless"
+    source_or_assumption: "Assumption"
+    confidence: "LOW"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "Low-speed static/ground roll propeller efficiency (to be replaced by J-curve model in Phase 2)"
+
+  propeller_efficiency_climb:
+    value: 0.81
+    unit: "dimensionless"
+    source_or_assumption: "Assumption"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "Climb phase propeller efficiency"
+
+  propeller_efficiency_cruise:
+    value: 0.85
+    unit: "dimensionless"
+    source_or_assumption: "Hamilton Sundstrand 568F typical cruise efficiency at Mach 0.42"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "Cruise phase propeller efficiency"
+
+  bsfc_takeoff_kg_per_kwh:
+    value: 0.275
+    unit: "kg/(kW*h)"
+    source_or_assumption: "Assumption based on turboshaft literature"
+    confidence: "LOW"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "Takeoff brake specific fuel consumption (to be verified in Phase 2 engine map)"
+
+  bsfc_cruise_kg_per_kwh:
+    value: 0.295
+    unit: "kg/(kW*h)"
+    source_or_assumption: "Calibrated to ATR 72-600 FCOM cruise fuel consumption (~762 kg/h at 2,580 kW total shaft power)"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "Cruise brake specific fuel consumption"
+
+  pax_unit_weight_kg:
+    value: 95.0
+    unit: "kg"
+    source_or_assumption: "ICAO / EASA standard passenger + baggage allowance (80 kg adult + 15 kg baggage)"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/aircraft_specs.py"
+    notes: "Note: seat shedding in weight_loop.py currently uses 85 kg (contradiction to be aligned in Phase 1)"
+
+  # ==============================================================================
+  # Powertrain & Electrical Architecture (propulsion.py)
+  # ==============================================================================
+  battery_specific_energy_wh_per_kg:
+    value: 400.0
+    unit: "Wh/kg"
+    source_or_assumption: "Assumption"
+    confidence: "LOW"
+    owner_file: "backend/sim_core/propulsion.py"
+    notes: "Pack-level energy density. Baseline commercial state-of-the-art is 250-300 Wh/kg; 400-600 Wh/kg are advanced solid-state scenarios."
+
+  battery_usable_soc_min:
+    value: 0.20
+    unit: "dimensionless"
+    source_or_assumption: "Industry standard lithium-ion cycle protection reserve (20% lower buffer)"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/propulsion.py"
+    notes: "Minimum state of charge allowable at touchdown"
+
+  battery_max_c_rate:
+    value: 4.0
+    unit: "1/h"
+    source_or_assumption: "High-power aviation battery cell datasheet assumption"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/propulsion.py"
+    notes: "Maximum continuous discharge rate during takeoff/climb"
+
+  battery_roundtrip_efficiency:
+    value: 0.95
+    unit: "dimensionless"
+    source_or_assumption: "Electrochemical discharge efficiency for high-rate Li-ion pouch cells"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/propulsion.py"
+    notes: "Discharge efficiency from battery terminals"
+
+  motor_power_density_kw_per_kg:
+    value: 6.0
+    unit: "kW/kg"
+    source_or_assumption: "Aerospace permanent magnet motor literature (e.g. H3X, EMRAX 348, Siemens SP260D)"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/propulsion.py"
+    notes: "Motor active mass specific power"
+
+  motor_efficiency:
+    value: 0.96
+    unit: "dimensionless"
+    source_or_assumption: "Permanent magnet synchronous machine benchmark efficiency"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/propulsion.py"
+    notes: "Electrical to mechanical shaft power efficiency"
+
+  inverter_power_density_kw_per_kg:
+    value: 14.0
+    unit: "kW/kg"
+    source_or_assumption: "Silicon Carbide (SiC) high-voltage aerospace inverter literature"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/propulsion.py"
+    notes: "Inverter active electronics specific power"
+
+  inverter_efficiency:
+    value: 0.985
+    unit: "dimensionless"
+    source_or_assumption: "SiC high-frequency switching inverter benchmark"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/propulsion.py"
+    notes: "DC-to-AC electrical conversion efficiency"
+
+  cabling_and_protection_factor:
+    value: 0.12
+    unit: "dimensionless"
+    source_or_assumption: "Assumption"
+    confidence: "LOW"
+    owner_file: "backend/sim_core/propulsion.py"
+    notes: "12% additional mass for high-voltage DC busbars, contactors, and pyro-fuses"
+
+  tms_specific_mass_kg_per_kw_th:
+    value: 0.15
+    unit: "kg/kW_th"
+    source_or_assumption: "Assumption"
+    confidence: "LOW"
+    owner_file: "backend/sim_core/propulsion.py"
+    notes: "Liquid cooling loop radiator, pump, and coolant mass per kW waste heat (to be refined in Phase 2)"
+
+  charger_efficiency:
+    value: 0.90
+    unit: "dimensionless"
+    source_or_assumption: "Commercial ground charger efficiency assumption (grid to battery terminals)"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/mission_sim.py"
+    notes: "Combined grid transformer, rectifier, and CCS/MCS charging cable losses"
+
+  kerosene_emission_factor_tank_to_wake:
+    value: 3.16
+    unit: "kg_CO2/kg_fuel"
+    source_or_assumption: "ICAO Environmental Report / IPCC Standard for Jet-A1 combustion"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/mission_sim.py"
+    notes: "Direct tailpipe/tank-to-wake CO2 factor"
+
+  reserve_fuel_kg:
+    value: 550.0
+    unit: "kg"
+    source_or_assumption: "Assumption based on FAR Part 121 / DGCA CAR Section 8 Turboprop reserves (45 min hold + 100 km alternate)"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/weight_loop.py"
+    notes: "Fixed reserve fuel. In Phase 1 Item 8, this will scale with aircraft weight."
+
+  # ==============================================================================
+  # Regional Airport & Grid Data (routes.py)
+  # ==============================================================================
+  airports:
+    VOBL_BLR:
+      elevation_ft: 3000.0
+      runway_m: 4000.0
+      source: "AAI Aeronautical Information Publication (AIP) India / VOBL Aerodrome Chart"
+      confidence: "HIGH"
+    VABM_IXG:
+      elevation_ft: 2488.0
+      runway_m: 2300.0
+      source: "AAI AIP India / VABM Aerodrome Chart"
+      confidence: "HIGH"
+    VABB_BOM:
+      elevation_ft: 39.0
+      runway_m: 3660.0
+      source: "AAI AIP India / VABB Aerodrome Chart"
+      confidence: "HIGH"
+    VAPO_PNQ:
+      elevation_ft: 1942.0
+      runway_m: 2540.0
+      source: "AAI AIP India / VAPO Aerodrome Chart"
+      confidence: "HIGH"
+    VIDP_DEL:
+      elevation_ft: 777.0
+      runway_m: 4430.0
+      source: "AAI AIP India / VIDP Aerodrome Chart"
+      confidence: "HIGH"
+    VIDN_DED:
+      elevation_ft: 1857.0  # Existing code has 1827.0 ft; needs correction in Phase 1
+      runway_m: 2140.0
+      source: "AAI AIP India / VIDN Aerodrome Chart (Elevation 1,857 ft / 566 m)"
+      confidence: "HIGH"
+    VOMM_MAA:
+      elevation_ft: 52.0
+      runway_m: 3658.0
+      source: "AAI AIP India / VOMM Aerodrome Chart"
+      confidence: "HIGH"
+    VOTP_TIR:
+      elevation_ft: 350.0
+      runway_m: 2286.0
+      source: "AAI AIP India / VOTP Aerodrome Chart"
+      confidence: "HIGH"
+    VAAH_AMD:
+      elevation_ft: 189.0
+      runway_m: 3505.0
+      source: "AAI AIP India / VAAH Aerodrome Chart"
+      confidence: "HIGH"
+    VAUD_UDR:
+      elevation_ft: 1683.0  # Existing code has 1684.0 ft
+      runway_m: 2743.0
+      source: "AAI AIP India / VAUD Aerodrome Chart (Elevation 1,683 ft / 513 m)"
+      confidence: "HIGH"
+
+  # ==============================================================================
+  # Phase 2 Physics Upgrades: Propeller Aerodynamics (propeller.py)
+  # ==============================================================================
+  propeller_diameter_m:
+    value: 3.93
+    unit: "m"
+    source_or_assumption: "Hamilton Sundstrand 568F 6-blade propeller technical specifications / EASA TCDS P.005"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/propeller.py"
+    notes: "Propeller diameter for ATR 72-600 installation"
+
+  propeller_rpm_takeoff:
+    value: 1200.0
+    unit: "RPM"
+    source_or_assumption: "ATR 72-600 Flight Crew Operating Manual (FCOM)"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/propeller.py"
+    notes: "100% NP rated constant speed propeller setting during takeoff and initial climb"
+
+  propeller_peak_efficiency:
+    value: 0.86
+    unit: "dimensionless"
+    source_or_assumption: "Hamilton Sundstrand 568F aerodynamic performance maps / NACA propeller charts"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/propeller.py"
+    notes: "Peak propeller propulsive efficiency at design advance ratio J ~= 1.4"
+
+  propeller_static_thrust_per_engine_n:
+    value: 22000.0
+    unit: "N"
+    source_or_assumption: "Calibrated to match ATR 72-600 FCOM takeoff ground roll (~967 m all-engine, 1279 m to 35 ft screen height at MTOW)"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/propeller.py"
+    notes: "Static thrust per PW127M engine (22.0 kN/engine, 44.0 kN total at brake release)"
+
+  # ==============================================================================
+  # Phase 2 Physics Upgrades: Engine Thermodynamic Map (engine_map.py)
+  # ==============================================================================
+  pw127m_flat_rating_oat_c:
+    value: 30.0
+    unit: "deg_C"
+    source_or_assumption: "Pratt & Whitney Canada PW127M Engine Operating Manual / EASA TCDS E.044"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/engine_map.py"
+    notes: "Flat-rating ambient temperature threshold up to which maximum shaft power is maintained"
+
+  pw127m_hot_day_lapse_pct_per_c:
+    value: 0.009
+    unit: "fraction/deg_C"
+    source_or_assumption: "Turboprop turbine inlet temperature (TIT) thermodynamic limit derate (-0.9% / deg C above 30 deg C)"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/engine_map.py"
+    notes: "Derate applied above 30 deg C ambient temperature at sea level"
+
+  pw127m_altitude_lapse_exponent:
+    value: 0.75
+    unit: "dimensionless"
+    source_or_assumption: "Standard atmospheric density ratio power law for two-spool turboprop engines (P ~ rho^0.75)"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/engine_map.py"
+    notes: "Turboshaft power lapse with decreasing atmospheric density at altitude"
+
+  pw127m_nominal_bsfc_kg_per_kwh:
+    value: 0.295
+    unit: "kg/kWh"
+    source_or_assumption: "PW127M specific fuel consumption at continuous cruise power (equivalent to ~0.485 lb/(hp*h))"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/engine_map.py"
+    notes: "Baseline BSFC at rated continuous cruise"
+
+  # ==============================================================================
+  # Phase 2 Physics Upgrades: Battery Dual Sizing & Limits (battery.py)
+  # ==============================================================================
+  battery_max_continuous_c_rate:
+    value: 3.5
+    unit: "1/h"
+    source_or_assumption: "Aviation-grade lithium-ion cell specifications (e.g. cylindrical 21700/pouch cells for eVTOL/hybrid)"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/battery.py"
+    notes: "Maximum continuous discharge rate without thermal runaway"
+
+  battery_max_peak_c_rate:
+    value: 5.0
+    unit: "1/h"
+    source_or_assumption: "Cell manufacturer peak 30-second discharge limits"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/battery.py"
+    notes: "Transient peak discharge limit for takeoff acceleration"
+
+  battery_eol_buffer_factor:
+    value: 1.25
+    unit: "dimensionless"
+    source_or_assumption: "Commercial aviation 80% State of Health (SOH) retirement rule (1.0 / 0.80 = 1.25x required BOL capacity)"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/battery.py"
+    notes: "Ensures mission completion at 80% End-of-Life battery capacity"
+
+  battery_pack_structural_factor:
+    value: 1.18
+    unit: "dimensionless"
+    source_or_assumption: "Pack casing, structural integration brackets, BMS, and internal wiring overhead (+18% mass over cell mass)"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/battery.py"
+    notes: "Cell-to-pack integration packaging multiplier"
+
+  # ==============================================================================
+  # Phase 2 Physics Upgrades: Thermal & Cooling (thermal.py)
+  # ==============================================================================
+  cooling_system_specific_mass_kg_per_kw:
+    value: 0.15
+    unit: "kg/kW_th"
+    source_or_assumption: "Liquid cooling heat exchanger, pump, plumbing, and coolant mass per kW heat rejection (SAE AIR6504)"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/thermal.py"
+    notes: "Active thermal management system (TMS) mass per kW of electrical waste heat"
+
+  battery_internal_resistance_dc_ohms:
+    value: 0.05
+    unit: "ohms"
+    source_or_assumption: "Equivalent pack DC internal resistance for high-voltage (800V class) hybrid pack"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/thermal.py"
+    notes: "Used to model Joule heating (I^2 * R) under discharge"
+
+  # ==============================================================================
+  # Phase 2 Physics Upgrades: Safety & Airworthiness (safety.py)
+  # ==============================================================================
+  cs25_second_segment_climb_gradient_min:
+    value: 0.024
+    unit: "fraction (2.4%)"
+    source_or_assumption: "EASA CS-25.121(b) Takeoff: One-engine-inoperative second segment climb requirement for twin-engine aircraft"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/safety.py"
+    notes: "Minimum gross climb gradient with critical engine inoperative and remaining engine at takeoff thrust (gear retracted)"
+
+  cs25_electrical_failure_climb_gradient_min:
+    value: 0.015
+    unit: "fraction (1.5%)"
+    source_or_assumption: "Airworthiness margin for complete loss of electrical hybrid boost during climb"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/safety.py"
+    notes: "Climb gradient required on kerosene-only operation after electrical power shutdown"
+
+  # ==============================================================================
+  # Phase 2 Physics Upgrades: Economics & Direct Operating Costs (costs.py)
+  # ==============================================================================
+  jet_a1_price_usd_per_kg:
+    value: 0.85
+    unit: "USD/kg"
+    source_or_assumption: "IATA Jet Fuel Price Monitor (India regional average ~$2.60/gal = ~$0.85/kg Jet-A1)"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/costs.py"
+    notes: "Baseline regional jet fuel cost"
+
+  electricity_price_usd_per_kwh:
+    value: 0.12
+    unit: "USD/kWh"
+    source_or_assumption: "Commercial high-tension airport electricity tariff in India (~INR 10/kWh = ~$0.12/kWh)"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/costs.py"
+    notes: "Ground charging electricity cost"
+
+  battery_replacement_cost_usd_per_kwh:
+    value: 220.0
+    unit: "USD/kWh"
+    source_or_assumption: "Aviation-certified pack replacement cost projected for 2026 (including FAA/EASA airworthiness recertification)"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/costs.py"
+    notes: "Cost amortized over calendar cycle life"
+
+  battery_cycle_life:
+    value: 1500
+    unit: "cycles"
+    source_or_assumption: "Aviation-grade LFP/NMC cell 80% DOD cycle life"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/costs.py"
+    notes: "Full equivalent cycles before pack reaches 80% SOH retirement"
+
+  revenue_loss_per_shed_seat_usd:
+    value: 65.0
+    unit: "USD/seat"
+    source_or_assumption: "Average one-way regional ticket yield on 1-hour Indian regional sectors"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/costs.py"
+    notes: "Opportunity cost of lost passenger revenue when payload is shed due to battery mass"
+
+  turboprop_maintenance_credit_usd_per_kwh:
+    value: 0.015
+    unit: "USD/kWh"
+    source_or_assumption: "Turbine engine hot-section life extension credit from reduced thermal fatigue when electric motor assists takeoff/climb"
+    confidence: "LOW"
+    owner_file: "backend/sim_core/costs.py"
+    notes: "Estimated engine maintenance savings per kWh offset by electric powertrain"
+
+  standard_turnaround_charging_time_min:
+    value: 30.0
+    unit: "minutes"
+    source_or_assumption: "Standard regional turboprop ground turnaround window (DGCA / airline scheduling standard)"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/costs.py"
+    notes: "Target time for ground battery recharge during passenger deplaning/boarding"
+
+  standard_taxi_fuel_kg:
+    value: 80.0
+    unit: "kg"
+    source_or_assumption: "ATR 72-600 FCOM standard taxi-in and taxi-out fuel allowance"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/weight_loop.py"
+    notes: "Total ground taxi fuel allowance per sector (40 kg taxi-out + 40 kg taxi-in)"
+
+  # ==============================================================================
+  # Phase 3 Real-World Validation & Calibration Parameters (calibration.py, opensky_client.py)
+  # ==============================================================================
+  calibrated_cd0_clean:
+    value: 0.02803
+    unit: "dimensionless"
+    source_or_assumption: "Powell optimization calibration against ATR 72-600 FCOM trip fuel benchmarks (100 to 300 NM)"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/calibration.py"
+    notes: "Calibrated parasite drag accounting for airframe excrescences, flap tracks, antennas, and de-ice boots"
+
+  calibrated_bsfc_cruise_kg_per_kwh:
+    value: 0.3299
+    unit: "kg/kWh"
+    source_or_assumption: "Powell optimization calibration against ATR 72-600 FCOM trip fuel benchmarks"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/calibration.py"
+    notes: "Calibrated nominal cruise fuel consumption at FL180-FL220"
+
+  opensky_anonymous_rate_limit_interval_s:
+    value: 10.0
+    unit: "seconds"
+    source_or_assumption: "OpenSky Network API Terms of Service for anonymous clients"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/opensky_client.py"
+    notes: "Minimum delay between consecutive anonymous REST calls"
+
+  opensky_cache_ttl_s:
+    value: 60.0
+    unit: "seconds"
+    source_or_assumption: "Local telemetry freshness threshold to prevent redundant network traffic"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/opensky_client.py"
+    notes: "Cache invalidation duration for live airspace state vectors"
+
+  # ==============================================================================
+  # Phase 4 Uncertainty & Sensitivity Distributions (uncertainty.py)
+  # ==============================================================================
+  monte_carlo_default_sample_size:
+    value: 1000
+    unit: "samples"
+    source_or_assumption: "Sobol quasi-random sequence space-filling standard for low-discrepancy sampling"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/uncertainty.py"
+    notes: "Provides +/- 1.5% margin of error at 95% confidence without sample clustering"
+
+  uncertainty_battery_density_min_wh_kg:
+    value: 280.0
+    unit: "Wh/kg"
+    source_or_assumption: "Current commercial pack-level specific energy lower bound"
+    confidence: "HIGH"
+    owner_file: "backend/sim_core/uncertainty.py"
+    notes: "Lower bound of uniform distribution for Monte Carlo sampling"
+
+  uncertainty_battery_density_max_wh_kg:
+    value: 450.0
+    unit: "Wh/kg"
+    source_or_assumption: "Projected 2028-2030 commercial solid-state aviation pack density upper bound"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/uncertainty.py"
+    notes: "Upper bound of uniform distribution for Monte Carlo sampling"
+
+  uncertainty_motor_power_density_mean_kw_kg:
+    value: 5.0
+    unit: "kW/kg"
+    source_or_assumption: "SAE AIR6504 / NASA electrified propulsion motor power density targets"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/uncertainty.py"
+    notes: "Mean value for normal distribution in Monte Carlo sizing"
+
+  uncertainty_cd0_std_dev:
+    value: 0.0015
+    unit: "dimensionless"
+    source_or_assumption: "Airframe production and surface excrescence manufacturing variance"
+    confidence: "MEDIUM"
+    owner_file: "backend/sim_core/uncertainty.py"
+    notes: "Standard deviation around calibrated Cd0 (0.02803)"
+
+  # Expanded Airports Data
+  airports_expanded:
+    VICG_IXC:
+      elevation_ft: 1012.0
+      runway_m: 3170.0
+      source: "AAI AIP India / VICG Aerodrome Chart"
+      confidence: "HIGH"
+    VOHS_HYD:
+      elevation_ft: 2024.0
+      runway_m: 4260.0
+      source: "AAI AIP India / VOHS Aerodrome Chart"
+      confidence: "HIGH"
+    VEGT_GAU:
+      elevation_ft: 162.0
+      runway_m: 3110.0
+      source: "AAI AIP India / VEGT Aerodrome Chart"
+      confidence: "HIGH"
+    VEBI_SHL:
+      elevation_ft: 2909.0
+      runway_m: 1829.0
+      source: "AAI AIP India / VEBI Aerodrome Chart"
+      confidence: "HIGH"
+    VECC_CCU:
+      elevation_ft: 16.0
+      runway_m: 3627.0
+      source: "AAI AIP India / VECC Aerodrome Chart"
+      confidence: "HIGH"
+    VEBD_IXB:
+      elevation_ft: 282.0
+      runway_m: 2743.0
+      source: "AAI AIP India / VEBD Aerodrome Chart"
+      confidence: "HIGH"
+
+  # =====================================================================
+  # PHASE 5: MACHINE LEARNING SURROGATES & CONFORMAL PREDICTION
+  # =====================================================================
+  surrogate_training_domain:
+    stage_distance_km_range: [80.0, 600.0]
+    hp_fraction_range: [0.0, 0.45]
+    battery_wh_per_kg_range: [250.0, 600.0]
+    ambient_delta_c_range: [-10.0, 25.0]
+    source_or_assumption: "Operational flight envelope bounds for ATR 72-600 regional sectors"
+    confidence: "HIGH"
+    owner_file: "backend/ml_service/trainer.py"
+    notes: "Sobol 4D quasi-random space-filling sequence generation"
+
+  surrogate_conformal_alpha:
+    nominal_confidence_levels: [0.90, 0.95]
+    calibration_split_fraction: 0.15
+    source_or_assumption: "Split-conformal prediction theory (Vovk et al. / Angelopoulos & Bates 2021)"
+    confidence: "HIGH"
+    owner_file: "backend/ml_service/trainer.py"
+    notes: "Guaranteed finite-sample distribution-free coverage without asymptotic distributional assumptions"
+
+  surrogate_gbdt_hyperparameters:
+    model_type: "HistGradientBoostingRegressor"
+    max_iter: 150
+    max_leaf_nodes: 31
+    source_or_assumption: "Scikit-learn tree boosting optimization on tabular physics simulations"
+    confidence: "HIGH"
+    owner_file: "backend/ml_service/trainer.py"
+    notes: "Selected over MLPRegressor due to superior R^2 (>0.99) and exact boundary handling"
+
+  # =====================================================================
+  # PHASE 6: GEMMA 3 270M ANALYST & NUMERICAL CONSISTENCY GATING
+  # =====================================================================
+  gemma3_lora_hyperparameters:
+    base_architecture: "Gemma 3 270M (Pure PyTorch)"
+    lora_rank_r: 8
+    lora_alpha: 16.0
+    learning_rate: 0.0003
+    optimizer: "AdamW"
+    source_or_assumption: "Low-Rank Adaptation parameter efficiency standards (Hu et al. 2021)"
+    confidence: "HIGH"
+    owner_file: "backend/ml_service/gemma_analyst_pt.py"
+    notes: "Applied to query and value projection matrices; base weights frozen"
+
+  numerical_consistency_tolerances:
+    relative_tolerance: 0.02
+    absolute_tolerance: 0.3
+    gate_name: "Numerical Consistency Check"
+    source_or_assumption: "Engineering audit standards to detect hallucinated numerical figures"
+    confidence: "HIGH"
+    owner_file: "backend/ml_service/analyst.py"
+    notes: "Asserts replaced by explicit GroundingVerificationError and fallback to deterministic template"

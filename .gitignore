@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+frontend/dist/
+dist/
+
+# Python cache & virtual environments
+__pycache__/
+backend/**/__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# Environment, OS, & IDE
+.env
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

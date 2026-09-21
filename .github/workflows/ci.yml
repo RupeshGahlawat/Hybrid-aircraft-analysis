@@ -1,0 +1,39 @@
+name: AeroHybrid CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Physics & Simulation Test Suite
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install hypothesis ruff mypy
+
+    - name: Lint with Ruff
+      run: |
+        ruff check backend/ tests/
+
+    - name: Static Type Check with Mypy
+      run: |
+        mypy backend/sim_core
+
+    - name: Run Pytest & Regression Tests
+      run: |
+        pytest tests/ -v --durations=10
