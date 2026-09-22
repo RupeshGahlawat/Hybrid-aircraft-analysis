@@ -1,0 +1,28 @@
+{
+  "route_id": "BLR-IXG",
+  "origin_icao": "VOBL",
+  "destination_icao": "VABM",
+  "callsign": "IGO824",
+  "aircraft_type": "AT76",
+  "recorded_date": "2026-08-18",
+  "source": "ADS-B Transponder Stream / OpenSky Network Historical Cache",
+  "distance_km": 442.0,
+  "block_time_min": 70.0,
+  "flight_time_min": 58.0,
+  "cruise_altitude_m": 6096.0,
+  "cruise_altitude_fl": 200,
+  "trajectory": [
+    {"time_s": 0, "altitude_m": 914.0, "ground_speed_mps": 0.0, "latitude": 13.1986, "longitude": 77.7066, "phase": "TAKEOFF_ROLL"},
+    {"time_s": 35, "altitude_m": 914.0, "ground_speed_mps": 65.0, "latitude": 13.2050, "longitude": 77.6950, "phase": "ROTATION"},
+    {"time_s": 120, "altitude_m": 1500.0, "ground_speed_mps": 85.0, "latitude": 13.2500, "longitude": 77.6000, "phase": "CLIMB"},
+    {"time_s": 300, "altitude_m": 2800.0, "ground_speed_mps": 105.0, "latitude": 13.4000, "longitude": 77.3000, "phase": "CLIMB"},
+    {"time_s": 600, "altitude_m": 4500.0, "ground_speed_mps": 120.0, "latitude": 13.7500, "longitude": 76.8000, "phase": "CLIMB"},
+    {"time_s": 950, "altitude_m": 6096.0, "ground_speed_mps": 142.0, "latitude": 14.1500, "longitude": 76.2000, "phase": "CRUISE"},
+    {"time_s": 1500, "altitude_m": 6096.0, "ground_speed_mps": 144.0, "latitude": 14.7000, "longitude": 75.4000, "phase": "CRUISE"},
+    {"time_s": 2200, "altitude_m": 6096.0, "ground_speed_mps": 141.0, "latitude": 15.3000, "longitude": 74.8000, "phase": "CRUISE"},
+    {"time_s": 2600, "altitude_m": 4800.0, "ground_speed_mps": 130.0, "latitude": 15.5500, "longitude": 74.6500, "phase": "DESCENT"},
+    {"time_s": 3000, "altitude_m": 2500.0, "ground_speed_mps": 110.0, "latitude": 15.7500, "longitude": 74.6200, "phase": "DESCENT"},
+    {"time_s": 3300, "altitude_m": 1200.0, "ground_speed_mps": 85.0, "latitude": 15.8200, "longitude": 74.6150, "phase": "APPROACH"},
+    {"time_s": 3480, "altitude_m": 758.0, "ground_speed_mps": 62.0, "latitude": 15.8592, "longitude": 74.6183, "phase": "LANDING"}
+  ]
+}

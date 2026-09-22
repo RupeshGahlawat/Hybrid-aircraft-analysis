@@ -1,0 +1,28 @@
+{
+  "route_id": "BOM-PNQ",
+  "origin_icao": "VABB",
+  "destination_icao": "VAPO",
+  "callsign": "SEJ104",
+  "aircraft_type": "AT76",
+  "recorded_date": "2026-08-14",
+  "source": "ADS-B Transponder Stream / OpenSky Network Historical Cache",
+  "distance_km": 119.0,
+  "block_time_min": 35.0,
+  "flight_time_min": 26.5,
+  "cruise_altitude_m": 4267.2,
+  "cruise_altitude_fl": 140,
+  "trajectory": [
+    {"time_s": 0, "altitude_m": 12.0, "ground_speed_mps": 0.0, "latitude": 19.0886, "longitude": 72.8679, "phase": "TAKEOFF_ROLL"},
+    {"time_s": 35, "altitude_m": 12.0, "ground_speed_mps": 64.0, "latitude": 19.0910, "longitude": 72.8750, "phase": "ROTATION"},
+    {"time_s": 70, "altitude_m": 250.0, "ground_speed_mps": 78.0, "latitude": 19.0980, "longitude": 72.8900, "phase": "CLIMB"},
+    {"time_s": 150, "altitude_m": 850.0, "ground_speed_mps": 85.0, "latitude": 19.0800, "longitude": 72.9500, "phase": "CLIMB"},
+    {"time_s": 300, "altitude_m": 1900.0, "ground_speed_mps": 98.0, "latitude": 19.0200, "longitude": 73.1200, "phase": "CLIMB"},
+    {"time_s": 500, "altitude_m": 3100.0, "ground_speed_mps": 110.0, "latitude": 18.9400, "longitude": 73.3500, "phase": "CLIMB"},
+    {"time_s": 680, "altitude_m": 4267.2, "ground_speed_mps": 132.0, "latitude": 18.8800, "longitude": 73.5000, "phase": "CRUISE"},
+    {"time_s": 900, "altitude_m": 4267.2, "ground_speed_mps": 134.0, "latitude": 18.7800, "longitude": 73.6800, "phase": "CRUISE"},
+    {"time_s": 1100, "altitude_m": 3400.0, "ground_speed_mps": 122.0, "latitude": 18.6800, "longitude": 73.7800, "phase": "DESCENT"},
+    {"time_s": 1300, "altitude_m": 2100.0, "ground_speed_mps": 105.0, "latitude": 18.6200, "longitude": 73.8500, "phase": "DESCENT"},
+    {"time_s": 1500, "altitude_m": 1000.0, "ground_speed_mps": 88.0, "latitude": 18.5900, "longitude": 73.9000, "phase": "APPROACH"},
+    {"time_s": 1590, "altitude_m": 592.0, "ground_speed_mps": 60.0, "latitude": 18.5822, "longitude": 73.9197, "phase": "LANDING"}
+  ]
+}

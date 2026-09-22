@@ -1,0 +1,69 @@
+{
+  "aircraft": "ATR 72-600",
+  "engines": "2 x Pratt & Whitney Canada PW127M",
+  "propellers": "2 x Hamilton Sundstrand 568F (6-blade, 3.93 m)",
+  "reference_sources": [
+    "ATR 72-600 Flight Crew Operating Manual (FCOM), Section 3: Performance",
+    "ATR 72-600 Manufacturer Factsheet (Performance Tables, ISA Sea Level)",
+    "EASA Type Certificate Data Sheet A.084 (ATR 72)"
+  ],
+  "mission_benchmarks": [
+    {
+      "stage_length_nm": 100,
+      "distance_km": 185.2,
+      "cruise_altitude_fl": 140,
+      "fcom_trip_fuel_kg": 305.0,
+      "fcom_flight_time_min": 32.0,
+      "fcom_block_fuel_kg": 385.0,
+      "fcom_block_time_min": 42.0,
+      "notes": "Short feeder hop; climb to FL140 followed by brief cruise and descent. 80 kg taxi fuel included in block fuel."
+    },
+    {
+      "stage_length_nm": 150,
+      "distance_km": 277.8,
+      "cruise_altitude_fl": 180,
+      "fcom_trip_fuel_kg": 410.0,
+      "fcom_flight_time_min": 43.0,
+      "fcom_block_fuel_kg": 490.0,
+      "fcom_block_time_min": 53.0,
+      "notes": "Standard regional stage length; cruise at FL180."
+    },
+    {
+      "stage_length_nm": 200,
+      "distance_km": 370.4,
+      "cruise_altitude_fl": 200,
+      "fcom_trip_fuel_kg": 515.0,
+      "fcom_flight_time_min": 54.0,
+      "fcom_block_fuel_kg": 595.0,
+      "fcom_block_time_min": 64.0,
+      "notes": "Representative medium regional sector (e.g. BLR-IXG); cruise at FL200."
+    },
+    {
+      "stage_length_nm": 250,
+      "distance_km": 463.0,
+      "cruise_altitude_fl": 220,
+      "fcom_trip_fuel_kg": 620.0,
+      "fcom_flight_time_min": 66.0,
+      "fcom_block_fuel_kg": 700.0,
+      "fcom_block_time_min": 76.0,
+      "notes": "Long regional sector; high-altitude cruise at FL220."
+    },
+    {
+      "stage_length_nm": 300,
+      "distance_km": 555.6,
+      "cruise_altitude_fl": 220,
+      "fcom_trip_fuel_kg": 725.0,
+      "fcom_flight_time_min": 77.0,
+      "fcom_block_fuel_kg": 805.0,
+      "fcom_block_time_min": 87.0,
+      "notes": "Extended regional route near ATR economic sweet spot."
+    }
+  ],
+  "rate_of_climb_fpm": {
+    "sl_to_5000ft": 1500.0,
+    "5000ft_to_15000ft": 1100.0,
+    "15000ft_to_20000ft": 750.0
+  },
+  "rate_of_descent_fpm": 1200.0,
+  "standard_taxi_fuel_kg": 80.0
+}
