@@ -1,0 +1,114 @@
+{
+  "benchmarks": {
+    "GBDT": {
+      "mae": {
+        "fuel_saved_pct": 0.219,
+        "net_co2_saved_pct_wtw": 0.109,
+        "battery_weight_kg": 9.927,
+        "mtow_hybrid_kg": 24.399,
+        "passengers_carried": 0.211
+      },
+      "rmse": {
+        "fuel_saved_pct": 0.345,
+        "net_co2_saved_pct_wtw": 0.201,
+        "battery_weight_kg": 14.942,
+        "mtow_hybrid_kg": 29.401,
+        "passengers_carried": 0.311
+      },
+      "r2": {
+        "fuel_saved_pct": 0.9979,
+        "net_co2_saved_pct_wtw": 0.9721,
+        "battery_weight_kg": 0.9983,
+        "mtow_hybrid_kg": 0.9923,
+        "passengers_carried": 0.9928
+      },
+      "inference_time_us": 5934.9
+    },
+    "MLP": {
+      "mae": {
+        "fuel_saved_pct": 0.542,
+        "net_co2_saved_pct_wtw": 0.128,
+        "battery_weight_kg": 57.273,
+        "mtow_hybrid_kg": 13669.208,
+        "passengers_carried": 2.262
+      },
+      "rmse": {
+        "fuel_saved_pct": 0.716,
+        "net_co2_saved_pct_wtw": 0.224,
+        "battery_weight_kg": 73.49,
+        "mtow_hybrid_kg": 13723.123,
+        "passengers_carried": 2.856
+      },
+      "r2": {
+        "fuel_saved_pct": 0.991,
+        "net_co2_saved_pct_wtw": 0.9652,
+        "battery_weight_kg": 0.9596,
+        "mtow_hybrid_kg": -1687.3514,
+        "passengers_carried": 0.3924
+      },
+      "inference_time_us": 702.7
+    },
+    "Polynomial_Ridge": {
+      "mae": {
+        "fuel_saved_pct": 0.633,
+        "net_co2_saved_pct_wtw": 0.227,
+        "battery_weight_kg": 15.038,
+        "mtow_hybrid_kg": 34.879,
+        "passengers_carried": 0.388
+      },
+      "rmse": {
+        "fuel_saved_pct": 0.879,
+        "net_co2_saved_pct_wtw": 0.324,
+        "battery_weight_kg": 20.786,
+        "mtow_hybrid_kg": 43.731,
+        "passengers_carried": 0.5
+      },
+      "r2": {
+        "fuel_saved_pct": 0.9864,
+        "net_co2_saved_pct_wtw": 0.9272,
+        "battery_weight_kg": 0.9968,
+        "mtow_hybrid_kg": 0.9829,
+        "passengers_carried": 0.9814
+      },
+      "inference_time_us": 948.3
+    }
+  },
+  "conformal_calibration": {
+    "fuel_saved_pct": {
+      "q_90": 0.518,
+      "q_95": 0.688,
+      "test_empirical_coverage_90": 0.9333,
+      "test_empirical_coverage_95": 0.9667
+    },
+    "net_co2_saved_pct_wtw": {
+      "q_90": 0.215,
+      "q_95": 0.256,
+      "test_empirical_coverage_90": 0.9,
+      "test_empirical_coverage_95": 0.9389
+    },
+    "battery_weight_kg": {
+      "q_90": 23.555,
+      "q_95": 32.134,
+      "test_empirical_coverage_90": 0.8944,
+      "test_empirical_coverage_95": 0.9389
+    },
+    "mtow_hybrid_kg": {
+      "q_90": 52.008,
+      "q_95": 58.265,
+      "test_empirical_coverage_90": 0.9444,
+      "test_empirical_coverage_95": 0.9611
+    },
+    "passengers_carried": {
+      "q_90": 0.529,
+      "q_95": 0.706,
+      "test_empirical_coverage_90": 0.85,
+      "test_empirical_coverage_95": 0.9611
+    }
+  },
+  "sample_sizes": {
+    "total": 1200,
+    "train": 840,
+    "cal": 180,
+    "test": 180
+  }
+}
