@@ -1,0 +1,23 @@
+{
+  "task_a_nl_to_json": {
+    "total_valid_evaluated": 56,
+    "exact_matches": 56,
+    "exact_match_rate_pct": 100.0,
+    "total_refusals_evaluated": 5,
+    "refusals_correct": 5,
+    "refusal_rate_pct": 100.0
+  },
+  "task_b_faithfulness": {
+    "total_samples": 40,
+    "passed_verification": 40,
+    "number_faithfulness_rate_pct": 100.0
+  },
+  "adversarial_catch_rate": {
+    "total_adversarial_samples": 200,
+    "caught_discrepancies": 200,
+    "adversarial_catch_rate_pct": 100.0
+  },
+  "evaluation_elapsed_seconds": 0.007,
+  "gate_name": "Numerical Consistency Check",
+  "timestamp": "2026-09-19 11:21:03"
+}
